@@ -21,6 +21,7 @@ def get_correlated(game_id):
 
 def get_collabrative():
     coll_model = Collabrative()
-    coll_model.transform()
+    # coll_model.transform()
+    coll_model.get_recommendations("Antiquity")
 
 get_collabrative()
