@@ -11,7 +11,7 @@
   * [Analysis](#analysis)
 * [Recommenders](#recommender)
   * [Popular recommender](#popular)
-  * [Collabrative filtering](#collabrative)
+  * [Collaborative filtering](#collabrative)
 * [Conclusion](#conclusion)
 * [Future Analysis](#future-analysis)
 
@@ -25,7 +25,7 @@ Data Source: [BGG API](https://boardgamegeek.com/wiki/page/BGG_XML_API)
 
 ### Analysis
 
-Each board game has data following fields:  
+Each board game has the following fields:  
   > -`board game id` 
   > -`name` 
   > -`year published` 
@@ -40,9 +40,9 @@ Each board game has data following fields:
   > -`user rating count`
   > -`age`
   > -`bgg rank`
-  > -`catergory rank`
+  > -`category rank`
 
-Each user rating has following field.  
+Each user rating has the following field.  
   > -`user id` 
   > -`bgg user handle` 
   > -`board game id` 
@@ -70,9 +70,9 @@ Each user rating has following field.
  
  ## Recommenders
  
- ### Popular recommeneder
+ ### Popular recommender
  
- ### Collabrative recommender
+ ### Collaborative recommender
  
  ## Conclusion
  
