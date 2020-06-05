@@ -11,6 +11,7 @@
   * [Analysis](#analysis)
 * [Recommenders](#recommender)
   * [Popular recommender](#popular)
+  * [Content base filtering](#content)
   * [Collaborative filtering](#collabrative)
 * [Conclusion](#conclusion)
 * [Future Analysis](#future-analysis)
@@ -21,6 +22,8 @@
 
 ### Data Pipeline
 
+ ![](images/Data Pipeline.png)
+ 
 Data Source: [BGG API](https://boardgamegeek.com/wiki/page/BGG_XML_API)
 
 ### Analysis
@@ -67,6 +70,8 @@ Each user rating has the following field.
  ## Recommenders
  
  ### Popular recommender
+ 
+ ### Content based recommender
  
  ### Collaborative recommender
  
