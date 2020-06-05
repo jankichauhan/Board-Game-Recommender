@@ -59,13 +59,9 @@ Each user rating has the following field.
  
  ![](images/ratings_histogram.png)
  
- #### Most common words used in highly rated game
+ #### Most common words used in highly rated games and poorly rated games
  
- ![](images/postive_reviews.png)
- 
-  #### Most common words used in poorly rated game
- 
- ![](images/negative_reviews.png)
+ <img src="images/postive_reviews.png" width="400"> <img src="images/negative_reviews.png" width="400">
  
  
  ## Recommenders
