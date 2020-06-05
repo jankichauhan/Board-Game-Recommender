@@ -1,0 +1,107 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+    <style>
+        #formdiv {
+            margin: 0 auto;
+        }
+    </style>
+    <style>
+        .center {
+          margin: 0 auto;
+          width: 60%;
+          padding: 1px;
+        }
+    </style>
+</head>
+<h1 style="text-align: center;"><span style="color: #ff9900;">Board Game Recommender</span></h1>
+<p style="text-align: center;"><span style="color: #333333;">Please enter three games you like:</span></p>
+<form action="/" method='POST'>
+
+<!-- Text input-->
+<div class="center">
+  <div class="center">
+  <input id="input2" name="input2" type="text" style="display:block; margin : 0 auto;" class="center" required="">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="center" >
+  <div class="center">
+  <input id="input3" name="input3" type="text" style="display:block; margin : 0 auto;" class="center" required="">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="center">
+  <div class="center">
+  <input id="input1" name="input1" type="text" style="display:block; margin : 0 auto;" class="center" required="">
+
+  </div>
+</div>
+
+<!-- Button -->
+<div class="center">
+  <label class="center" for="submit"></label>
+  <div class="center">
+    <button id="submit" name="submit" style="display:block; margin : 0 auto;" type="submit">Submit</button>
+  </div>
+</div>
+
+</form>
+<form>
+    <p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;"><span style="color: #333333;">Here are the recommendations:</span></p>
+<table class="center">
+      <thead >
+      <th class="center"><p style="text-align: center;"><span style="color: #333333;">Game</span></th>
+      <th class="center"><p style="text-align: left;"><span style="color: #333333;">Predicated Ratings</span></th>
+      </thead>
+      <tbody >
+        {% for x, y in data %}
+          <tr class="center">
+              <td><p style="text-align: center;"><span style="color: #333333;">{{ x }}</span></td>
+              <td><p style="text-align: left;"><span style="color: #333333;">{{ y }}</span></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+</table>
+
+</form>
+
+<script>
+    $(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#input1').autocomplete({
+                    source: data,
+                    minLength: 2
+                });
+            });
+        });
+    $(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#input3').autocomplete({
+                    source: data,
+                    minLength: 2
+                });
+            });
+        });
+    $(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#input2').autocomplete({
+                    source: data,
+                    minLength: 2
+                });
+            });
+        });
+</script>

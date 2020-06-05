@@ -19,9 +19,18 @@ def get_correlated(game_id):
 
 # get_correlated('174430')
 
-def get_collabrative():
+def get_collabrative(games):
+    print("in get collabrative")
     coll_model = Collabrative()
     # coll_model.transform()
-    coll_model.get_recommendations("Antiquity")
+    result = pd.DataFrame()
+    for game in games:
+        print("Recommendation for game ", game)
+        df = coll_model.get_recommendations(game)
+        print(df)
+        df = df[df.name != game]
+        result = result.append(df)
+    result = result.drop_duplicates().round({"mean":2, "model_score":2})
 
-get_collabrative()
+    print(result)
+    return result.sort_values('model_score', ascending=False).head(10)

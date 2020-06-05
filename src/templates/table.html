@@ -1,0 +1,16 @@
+{% extends 'search.html' %}
+
+    <table>
+      <thead>
+        <th>Game</th>
+        <th>Predicated Ratings</th>
+      </thead>
+      <tbody>
+        {% for x, y in data %}
+          <tr>
+            <td>{{ x }}</td>
+            <td>{{ y }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+</table>
