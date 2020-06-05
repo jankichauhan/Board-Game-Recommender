@@ -61,11 +61,11 @@ Each user rating has the following field.
  
  #### Most common words used in highly rated game
  
-![test image size](images/postive_reviews.png){:height="50%" width="50%"}
+![](images/postive_reviews.png =100x20)
  
   #### Most common words used in poorly rated game
  
- ![](images/negative_reviews.png){:height="50%" width="50%"}
+ ![](images/negative_reviews.png)
  
  
  ## Recommenders
