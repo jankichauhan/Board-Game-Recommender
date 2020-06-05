@@ -8,7 +8,7 @@ from sklearn.neighbors import NearestNeighbors
 
 class Collabrative:
     MODEL_NAME = 'Collabrative'
-    COUNT_LIMIT = 2000
+    COUNT_LIMIT = 100
 
     def __init__(self):
         print("in init")
@@ -32,7 +32,6 @@ class Collabrative:
                                                                                            ascending=False).reset_index()
         number_of_games = len(top_games)
 
-        # mean_ratings = self.user_ratings.groupby('name')['rating'].mean().round(2)
         game_weights = learner.weight(top_games['name'], is_item=True)
         game_bias = learner.bias(top_games['name'], is_item=True)
         npweights = game_weights.numpy()
@@ -67,7 +66,8 @@ class Collabrative:
         if len(res) == 1:
             distances, indices = fitnn_model.kneighbors([weights_df[res.index[0]]])
         else:
-            print(res.head())
+            print("None or more than one results found ", res.head())
+            return pd.DataFrame()
         print(top_games_df.iloc[indices[0][:10]].sort_values('model_score', ascending=False))
 
         recommendation_df = top_games_df.iloc[indices[0][:10]].sort_values('model_score', ascending=False)

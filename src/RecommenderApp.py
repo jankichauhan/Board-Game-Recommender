@@ -29,7 +29,8 @@ def index():
         third_game = str(request.form['input3'])
         games = [first_game, second_game, third_game]
         recommended_game = model.get_collabrative(games)
-        return render_template('search.html', data=zip(recommended_game['name'].values.tolist(),
+        if not recommended_game.empty:
+            return render_template('search.html', data=zip(recommended_game['name'].values.tolist(),
                                                       recommended_game['mean'].values.tolist()), form=form)
     return render_template("search.html", form=form)
 

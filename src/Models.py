@@ -22,15 +22,21 @@ def get_correlated(game_id):
 def get_collabrative(games):
     print("in get collabrative")
     coll_model = Collabrative()
-    # coll_model.transform()
     result = pd.DataFrame()
     for game in games:
         print("Recommendation for game ", game)
         df = coll_model.get_recommendations(game)
         print(df)
-        df = df[df.name != game]
-        result = result.append(df)
-    result = result.drop_duplicates().round({"mean":2, "model_score":2})
+        if not df.empty:
+            df = df[df.name != game]
+            result = result.append(df)
+    if result.empty:
+        # implement content based recommendation
+        # if content based returns empty, return popular
+        return result
+    else:
+        result = result.drop_duplicates().round({"mean":2, "model_score":2})
+        print(result)
+        return result.sort_values('model_score', ascending=False).head(10)
 
-    print(result)
-    return result.sort_values('model_score', ascending=False).head(10)
+get_collabrative(['Camel Up (Second Edition)', 'Carcassonne'])
