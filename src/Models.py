@@ -1,12 +1,17 @@
 import pandas as pd
 import numpy as np
 from src.PopularityRecommender import PopularityRecommender
-import src.Correlation as corr
+from src.Content import Content
 from src.Collabrative import Collabrative
 import os.path
 from os import path
 
 def get_popular(type):
+    """
+
+    :param type:
+    :return:
+    """
     print("in get popular")
 
     popular = PopularityRecommender()
@@ -14,32 +19,32 @@ def get_popular(type):
     print(result)
     return result
 
-def get_correlated(game_id):
-    if os.path.isfile('../data/data.csv'):
-        print(corr.recommend_items(game_id))
-    else:
-        corr.correlation()
-        print(corr.recommend_items(game_id))
-
-# get_correlated('174430')
 
 def get_collabrative(games):
+    """
+
+    :param games:
+    :return:
+    """
     print("in get collabrative")
     coll_model = Collabrative()
+    content = Content()
     result = pd.DataFrame()
     for game in games:
-        print("Recommendation for game ", game)
+        print("Collab Recommendation for game ", game)
         df = coll_model.get_recommendations(game)
-        print(df)
         if not df.empty:
             df = df[df.name != game]
             result = result.append(df)
     if result.empty:
-        # implement content based recommendation
-        # if content based returns empty, return popular
-        return result
+        for game in games:
+            print("Content Recommendation for game ", game)
+            df = content.get_recommendations(game)
+            result = result.append(df)
+
+        return result.head(10)
     else:
         result = result.drop_duplicates().round({"mean":2, "model_score":2})
-        print(result)
+        # print(result)
         return result.sort_values('model_score', ascending=False).head(10)
 

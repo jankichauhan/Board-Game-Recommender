@@ -25,12 +25,19 @@ class PopularityRecommender:
         return self.MODEL_NAME
 
     def recommend_items(self, popularity_type, topn=10):
-        if os.path.isfile('../data/'+popularity_type+'.csv') == False:
-            sql_query = "select name, rating from board_game where id in (select * from (select id from board_game_detail where " + popularity_type + " > 0 order by " + popularity_type + " Limit " + str(topn) + " ) as t1) order by users_rated DESC;"
+        """
+
+        :param popularity_type:
+        :param topn:
+        :return:
+        """
+        if os.path.isfile('../data/' + popularity_type + '.csv') == False:
+            sql_query = "select name, rating from board_game where id in (select * from (select id from board_game_detail where " + popularity_type + " > 0 order by " + popularity_type + " Limit " + str(
+                topn) + " ) as t1) order by users_rated DESC;"
             recommendation_df = pd.read_sql_query(sql_query, cnx)
             recommendation_df.index.name = 'id'
-            recommendation_df.to_csv('../data/'+popularity_type+'.csv')
+            recommendation_df.to_csv('../data/' + popularity_type + '.csv')
         else:
-            recommendation_df = pd.read_csv('../data/'+popularity_type+'.csv', index_col='id')
+            recommendation_df = pd.read_csv('../data/' + popularity_type + '.csv', index_col='id')
 
         return recommendation_df

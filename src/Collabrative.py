@@ -1,10 +1,21 @@
 import pandas as pd
 import pickle
 import numpy as np
+import mysql.connector
 from fastai.collab import *
 import os.path
 from sklearn.neighbors import NearestNeighbors
 
+config = {
+    'user': '',
+    'password': '',
+    'host': '127.0.0.1',
+    'database': 'recommender',
+    'raise_on_warnings': True
+}
+
+cnx = mysql.connector.connect(**config)
+mycursor = cnx.cursor()
 
 class Collabrative:
     MODEL_NAME = 'Collabrative'
@@ -16,7 +27,8 @@ class Collabrative:
     def transform(self):
         print(" in transform")
 
-        self.user_ratings = pd.read_csv('../data/bgg_user_ratings.csv', index_col=0)
+        sql_query = "select id,user,rating,comment,ID,name from user_ratings"
+        self.user_ratings = pd.read_sql_query(sql_query, cnx)
 
         games_by_users = self.user_ratings.groupby('name')['rating'].agg(['mean', 'count']).sort_values('mean',
                                                                                                         ascending=False)
@@ -51,6 +63,11 @@ class Collabrative:
 
 
     def get_recommendations(self, game):
+        """
+
+        :param game:
+        :return:
+        """
         print("in recommedations")
 
         if os.path.isfile('../static/model.pkl') == False:
@@ -59,9 +76,6 @@ class Collabrative:
         top_games_df = pd.read_csv("../data/top_games.csv", index_col='id')
         weights_df = pd.read_csv("../data/weights.csv", index_col='id').to_numpy()
 
-        # print(" ", top_games_df.info())
-        # /print(" ", type(weights_df))
-
         fitnn_model = pickle.load(open('../static/model.pkl', 'rb'))
         res = top_games_df[top_games_df['name'] == game]
         if len(res) == 1:
@@ -69,9 +83,8 @@ class Collabrative:
         else:
             print("None or more than one results found ", res.head())
             return pd.DataFrame()
-        print(top_games_df.iloc[indices[0][:10]].sort_values('model_score', ascending=False))
+        # print(top_games_df.iloc[indices[0][:10]].sort_values('model_score', ascending=False))
 
         recommendation_df = top_games_df.iloc[indices[0][:10]].sort_values('model_score', ascending=False)
 
         return recommendation_df[['name', 'mean', 'model_score']]
-
