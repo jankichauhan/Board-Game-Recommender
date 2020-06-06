@@ -4,6 +4,9 @@ GetData.py - will save xml per each game
 Parser.py - will parse and save data into sql tables
 
 # SQL tables meta data:
+
+Create the following tables and update PopularityRecommender.py, Collabrative.py and Content.py with login details.
+
 ## Board game table: 
 CREATE TABLE `board_game` (
   `id` int NOT NULL,
