@@ -113,4 +113,4 @@ Seeing the games in a two deminsional plot.
  
  ## Future Analysis
 
-## To run the recommender follow instruction from RUN.md
+To run the recommender follow instruction from RUN.md
