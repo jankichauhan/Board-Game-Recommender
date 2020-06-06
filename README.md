@@ -107,7 +107,8 @@ Each user rating has the following fields: ~2M ratings
  >> - Fast AI + KNN: RMSE - 1.2
  
  ![](images/knn.png)
- 
+Seeing the games in a two deminsional plot. 
+
  ## Conclusion
  
  ## Future Analysis
