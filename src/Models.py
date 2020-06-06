@@ -7,8 +7,12 @@ import os.path
 from os import path
 
 def get_popular(type):
-    popular = PopularityRecommender(type)
-    print(popular.recommend_items().loc[:,'name'])
+    print("in get popular")
+
+    popular = PopularityRecommender()
+    result = popular.recommend_items(type)
+    print(result)
+    return result
 
 def get_correlated(game_id):
     if os.path.isfile('../data/data.csv'):
@@ -39,4 +43,3 @@ def get_collabrative(games):
         print(result)
         return result.sort_values('model_score', ascending=False).head(10)
 
-get_collabrative(['Camel Up (Second Edition)', 'Carcassonne'])

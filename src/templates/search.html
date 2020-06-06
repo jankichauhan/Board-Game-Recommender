@@ -53,19 +53,53 @@
 </div>
 
 </form>
+
+<p style="text-align: center;"><span style="color: #333333;"> Or select the category to see popular games: </span></p>
+
+<form action="/popular" method='POST'>
+
+<!-- Text input-->
+
+<!-- Text input-->
+<div class="center">
+  <div class="center">
+ <select class="center" style="display:block; margin : 0 auto;" id="category" name="category">
+     <option disabled selected value> -- select a category -- </option>
+     <option value="bgg_rank">BGG top ranked</option>
+    <option value="abstract">Abstract Game</option>
+    <option value="childersgames">Children's Game</option>
+    <option value="partygames">Party Game</option>
+     <option value="strategygames">Strategy Game</option>
+     <option value="thematic">Thematic Game</option>
+     <option value="wargames">War Game</option>
+  </select>
+
+  </div>
+</div>
+
+<!-- Button -->
+<div class="center">
+  <label class="center" for="submit"></label>
+  <div class="center">
+    <button id="submit2" name="submit2" style="display:block; margin : 0 auto;" type="submit">Submit</button>
+  </div>
+</div>
+
+</form>
+
 <form>
     <p style="text-align: center;">&nbsp;</p>
 <p style="text-align: center;"><span style="color: #333333;">Here are the recommendations:</span></p>
 <table class="center">
       <thead >
       <th class="center"><p style="text-align: center;"><span style="color: #333333;">Game</span></th>
-      <th class="center"><p style="text-align: left;"><span style="color: #333333;">Predicated Ratings</span></th>
+<!--      <th class="center"><p style="text-align: left;"><span style="color: #333333;">Predicated Ratings</span></th>-->
       </thead>
       <tbody >
         {% for x, y in data %}
           <tr class="center">
               <td><p style="text-align: center;"><span style="color: #333333;">{{ x }}</span></td>
-              <td><p style="text-align: left;"><span style="color: #333333;">{{ y }}</span></td>
+<!--              <td><p style="text-align: left;"><span style="color: #333333;">{{ y }}</span></td>-->
           </tr>
         {% endfor %}
       </tbody>

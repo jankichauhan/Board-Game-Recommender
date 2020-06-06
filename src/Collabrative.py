@@ -49,6 +49,7 @@ class Collabrative:
         fitnn = nn.fit(npweights)
         pickle.dump(fitnn, open("../static/model.pkl", "wb"))
 
+
     def get_recommendations(self, game):
         print("in recommedations")
 
@@ -73,3 +74,4 @@ class Collabrative:
         recommendation_df = top_games_df.iloc[indices[0][:10]].sort_values('model_score', ascending=False)
 
         return recommendation_df[['name', 'mean', 'model_score']]
+
