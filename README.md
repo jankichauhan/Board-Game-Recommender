@@ -17,18 +17,21 @@
 * [Future Analysis](#future-analysis)
 
 ## Motivation
+I got introduced to board games in Dec 2010, no one had plans for the holidays and we all had enough of movie watching. We played Ticket to Ride and then Settler of Catan a few days later; it was so much fun, I loved it. Since then it has been board games over movies(for me!) When you have been playing board games for 10 years, you start developing your favorites. I am biased towards Euro games(specially worker placement games), any game by Jamey Stegmaier or Uwe Rosenberg I am willing to give a try. On the other hand card games are not in my top 10. Dominion is one of the best gateway games but it didn't appeal to me. For finding the next game to play, I rely on amazing people at [Dice Tower](www.dicetower.com)(this a youtube channel for board games reviews, play throughs ... etc). 
+
+Can we train a machine to learn patterns among users and the games they like? We can use this trained machine to recommend the next game the user should play. 
 
 ## Data Exploration
 
 ### Data Pipeline
 
- ![](images/Data Pipeline.png)
+![](images/Data%20Pipeline.png)
  
 Data Source: [BGG API](https://boardgamegeek.com/wiki/page/BGG_XML_API)
 
 ### Analysis
 
-Each board game has the following fields:  
+Each board game has the following fields: ~70K games
   > -`board game id` 
   > -`name` 
   > -`year published` 
@@ -45,7 +48,7 @@ Each board game has the following fields:
   > -`bgg rank`
   > -`category rank`
 
-Each user rating has the following field.  
+Each user rating has the following fields: ~2M ratings  
   > -`user id` 
   > -`bgg user handle` 
   > -`board game id` 
@@ -69,11 +72,26 @@ Each user rating has the following field.
  
  ## Recommenders
  
- ### Popular recommender
+ ### Popularity recommender
+ 
+ Popularity criteria = rank(overall/per category) + total number of users that rated the game
+ Popularity recommender will recommend the games based popularity criteria
+ User can choose to pick one of the following categories and the recommender will return popular games based of that category:
+ > - Abstract Game
+ > - Children's Game
+ > - Family Game
+ > - Party Game
+ > - Strategy Game
+ > - Thematic Game
+ > - War Game
  
  ### Content based recommender
  
+ Determine similar games based on the rank, category, playtime, max and min player and age. Recommend similar games based on the user's input.
+ 
  ### Collaborative recommender
+ 
+ Determine similar users based on their profiles and recommend games that other users liked. 
  
  ## Conclusion
  
