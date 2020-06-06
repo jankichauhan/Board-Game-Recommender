@@ -89,9 +89,24 @@ Each user rating has the following fields: ~2M ratings
  
  Determine similar games based on the rank, category, playtime, max and min player and age. Recommend similar games based on the user's input.
  
+ ![](images/content.png)
+ 
+ > - Method(s):
+ >> - Correlation matrix using pearson similarity
+ 
+ 
+ 
  ### Collaborative recommender
  
  Determine similar users based on their profiles and recommend games that other users liked. 
+ 
+ ![](images/collab.png)
+ 
+ > - Method(s):
+ >> - ALS: RMSE - 2.3
+ >> - Fast AI + KNN: RMSE - 1.2
+ 
+ ![](images/knn.png)
  
  ## Conclusion
  
