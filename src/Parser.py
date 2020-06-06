@@ -46,6 +46,10 @@ class Parser:
         self.wargames = 0;
 
     def getelements(self, filename):
+        """
+
+        :param filename:
+        """
         tree = ET.parse("../xmls/" + filename)
         root = tree.getroot()
 
@@ -119,12 +123,19 @@ class Parser:
         print(self.counter)
 
     def remove_accents(self, input_str):
+        """
+
+        :param input_str:
+        :return:
+        """
         nfkd_form = unicodedata.normalize('NFKD', input_str)
         only_ascii = nfkd_form.encode('ASCII', 'ignore')
         return only_ascii.decode()
 
     def insert_into_table(self):
+        """
 
+        """
         # Clear all table content before inserting
 
         designer = ''
@@ -173,17 +184,17 @@ class Parser:
         else:
             print("Game is missing name")
 
+if __name__ == '__main__':
 
-files = os.listdir('../xmls/')
-counter = 0
-sql_delete = "delete from board_game where id > 0"
-mycursor.execute(sql_delete)
-sql_delete = "delete from board_game_detail where id > 0"
-mycursor.execute(sql_delete)
-cnx.commit()
-for file in files:
-    print(file)
-    counter += 1
-    Parser().getelements(file)
-print(counter)
-# Parser().getelements('game161936.xml')
+    files = os.listdir('../xmls/')
+    counter = 0
+    sql_delete = "delete from board_game where id > 0"
+    mycursor.execute(sql_delete)
+    sql_delete = "delete from board_game_detail where id > 0"
+    mycursor.execute(sql_delete)
+    cnx.commit()
+    for file in files:
+        print(file)
+        counter += 1
+        Parser().getelements(file)
+    print(counter)
