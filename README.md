@@ -11,10 +11,10 @@
   * [Analysis](#analysis)
 * [Recommenders](#recommender)
   * [Popular recommender](#popular)
-  * [Content base filtering](#content)
-  * [Collaborative filtering](#collabrative)
-* [Conclusion](#conclusion)
-* [Future Analysis](#future-analysis)
+  * [Content based filtering](#content)
+  * [Collaborative filtering](#collaborative)
+* [Result](#result)
+* [For Future](#future)
 
 ## Motivation
 I got introduced to board games in Dec 2010, no one had plans for the holidays and we all had enough of movie watching. We played Ticket to Ride and then Settler of Catan a few days later; it was so much fun, I loved it. Since then it has been board games over movies(for me!) When you have been playing board games for 10 years, you start developing your favorites. I am biased towards Euro games(specially worker placement games), any game by Jamey Stegmaier or Uwe Rosenberg I am willing to give a try. On the other hand card games are not in my top 10. Dominion is one of the best gateway games but it didn't appeal to me. For finding the next game to play, I rely on amazing people at [Dice Tower](www.dicetower.com)(this a youtube channel for board games reviews, play throughs ... etc). 
@@ -48,7 +48,7 @@ Each board game has the following fields: ~70K games
   > -`bgg rank`
   > -`category rank`
 
-Each user rating has the following fields: ~2M ratings  
+Each user rating has the following fields: ~2M ratings(200K unique users and 30K unique games)
   > -`user id` 
   > -`bgg user handle` 
   > -`board game id` 
@@ -87,30 +87,46 @@ Each user rating has the following fields: ~2M ratings
  
  ### Content based recommender
  
- Determine similar games based on the rank, category, playtime, max and min player and age. Recommend similar games based on the user's input.
+Using the designer, category, game complexity and game mechanism determine cosine similarity between all games. Recommend similar games based on the user's input.
  
  ![](images/content.png)
  
  > - Method(s):
- >> - Correlation matrix using pearson similarity
+ >> - Countvectorizer + Cosine similarity
  
  
  
  ### Collaborative recommender
  
- Determine similar users based on their profiles and recommend games that other users liked. 
+A collaborative model computes similarity between users based on their past activity and recommend games which other similar users have not played. 
  
  ![](images/collab.png)
  
  > - Method(s):
- >> - ALS: RMSE - 2.3
- >> - Fast AI + KNN: RMSE - 1.2
+ >> - ALS: 
+ >>>- Reg param - 0.05
+ >>>- Max Iterations - 15
+ >>>- Rank - 5
+ >>>- Test RMSE - 2.3
+ 
+ >> - Fast AI + KNN: 
+ >>>- Epoch - 3
+ >>>- Learning rate - 1e-2
+ >>>- Weight decay - 0.15
+ >>>- Train RMSE - 1.2
+ >>>- Validation RMSE - 1.5
+ >>>- No of neighbours(knn) - no of games
  
  ![](images/knn.png)
-Seeing the games in a two deminsional plot. 
+Seeing the games in a top two dimensions of pca. 
 
- ## Conclusion
+ ## Result
+ > - App link:
  
- ## Future Analysis
+ 
+ ## For Future
+>- Include an option of using bgg username and recommend games based on users past activity. 
+>- Build a better content based recommender.
+>- Update recommender to handle live data.
 
 To run the recommender follow instruction from RUN.md
