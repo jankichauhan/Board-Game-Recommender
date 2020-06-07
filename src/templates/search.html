@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
@@ -14,8 +16,14 @@
           width: 60%;
           padding: 1px;
         }
+        footer {
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+        }
     </style>
 </head>
+<body>
 <h1 style="text-align: center;"><span style="color: #ff9900;">Board Game Recommender</span></h1>
 <p style="text-align: center;"><span style="color: #333333;">Please enter three games you like:</span></p>
 <form action="/" method='POST'>
@@ -139,3 +147,12 @@
             });
         });
 </script>
+
+<footer>
+    <div>
+         <p style="color: #333333;" >Made with ❤️ by <a href="https://www.linkedin.com/in/jankichauhan/">Janki Chauhan</a></p>
+         <p style="text-align: center;" class="center" ><a href="https://github.com/jankichauhan/boardgamerecommender">Github</a></p>
+    </div>
+</footer>
+</body>
+</html>
