@@ -1,5 +1,5 @@
 # What board game should I play next?
-**Personalized board game recommender
+**Personalized board game recommender**
 
 <br>Janki Chauhan
 <br>
