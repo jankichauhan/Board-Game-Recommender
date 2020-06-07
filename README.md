@@ -1,4 +1,6 @@
-# Board Game Recommender
+# What board game should I play next?
+**Personalized board game recommender
+
 <br>Janki Chauhan
 <br>
 [Linkedin](https://www.linkedin.com/in/jankichauhan/) | [Github](https://github.com/jankichauhan) | [Board Game Geek](https://boardgamegeek.com/user/jankichauhan)
@@ -31,7 +33,7 @@ Data Source: [BGG API](https://boardgamegeek.com/wiki/page/BGG_XML_API)
 
 ### Analysis
 
-Each board game has the following fields: ~70K games
+Each board game has the following features: ~70K games
   > -`board game id` 
   > -`name` 
   > -`year published` 
@@ -48,7 +50,7 @@ Each board game has the following fields: ~70K games
   > -`bgg rank`
   > -`category rank`
 
-Each user rating has the following fields: ~2M ratings(200K unique users and 30K unique games)
+Each user rating has the following features: ~12M ratings(200K unique users and 30K unique games)
   > -`user id` 
   > -`bgg user handle` 
   > -`board game id` 
@@ -74,7 +76,7 @@ Each user rating has the following fields: ~2M ratings(200K unique users and 30K
  
  ### Popularity recommender
  
- Popularity criteria = rank(overall/per category) + total number of users that rated the game
+ Popularity criteria = rank(overall/per category) + total number of voters
  Popularity recommender will recommend the games based popularity criteria
  User can choose to pick one of the following categories and the recommender will return popular games based of that category:
  > - Abstract Game
@@ -87,18 +89,25 @@ Each user rating has the following fields: ~2M ratings(200K unique users and 30K
  
  ### Content based recommender
  
-Using the designer, category, game complexity and game mechanism determine cosine similarity between all games. Recommend similar games based on the user's input.
- 
+Find the similarity between all pairs of games, then uses the most similar games to a user’s already-rated items to generate a list of recommendations.
+
+Similarity is defined using following features:
+>- Category
+>- Designer
+>- Complexity
+>- Mechanism
+
  ![](images/content.png)
  
  > - Method(s):
- >> - Countvectorizer + Cosine similarity
+ >>- Countvectorizer 
+ >>- Cosine similarity
  
  
  
  ### Collaborative recommender
  
-A collaborative model computes similarity between users based on their past activity and recommend games which other similar users have not played. 
+A collaborative model computes similarity between games based users that rated those games and recommend games which have not played. 
  
  ![](images/collab.png)
  
@@ -113,8 +122,9 @@ A collaborative model computes similarity between users based on their past acti
  >>>- Epoch - 3
  >>>- Learning rate - 1e-2
  >>>- Weight decay - 0.15
- >>>- Train RMSE - 1.2
- >>>- Validation RMSE - 1.5
+ >>>- Train Loss - 0.86
+ >>>- Validation Loss - 1.5
+ >>>- RMSE - 1.23
  >>>- No of neighbours(knn) - no of games
  
  ![](images/knn.png)
