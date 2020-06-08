@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 config = {
     'user': '',
-    'password': '!',
+    'password': '',
     'host': '127.0.0.1',
     'database': 'recommender',
     'raise_on_warnings': True
@@ -18,20 +18,28 @@ config = {
 cnx = mysql.connector.connect(**config)
 mycursor = cnx.cursor()
 
+
+# Collaborative item to item recommender, using RMSE to evaluate the model.
+# Initial RMSE was 1.3, improved to 1.23 by increasing number of epoch to 5.
+
 class Collabrative:
-    MODEL_NAME = 'Collabrative'
+    MODEL_NAME = 'Collaborative'
     COUNT_LIMIT = 100
 
     def __init__(self):
         print("in init")
 
     def transform(self):
+        """
+
+        """
         print(" in transform")
+        # transforming rating tables to be used as input to the learner
 
         sql_query = "select u.user_id as id,u.username as user,u.ratings as rating,u.review as comment,u.game_id as game_id,u.gamename as name from user_ratings"
         self.user_ratings = pd.read_sql_query(sql_query, cnx)
         games_by_users = self.user_ratings.groupby('name')['rating'].agg(['mean', 'count']).sort_values('mean',
-                                                                                                       ascending=False)
+                                                                                                        ascending=False)
         games_by_users['rank'] = games_by_users.reset_index().index + 1
 
         data_user_rating = CollabDataBunch.from_df(self.user_ratings, user_name='user', item_name='name',
@@ -44,6 +52,7 @@ class Collabrative:
         plt.show()
 
         learner.fit_one_cycle(5, 1e-2, wd=0.15)
+        # fit_one_cyle(epoch, learning rate, weight decay)
 
         learner.recorder.plot_losses()
         plt.show()
@@ -69,7 +78,6 @@ class Collabrative:
         fitnn = nn.fit(npweights)
         pickle.dump(fitnn, open("../static/model.pkl", "wb"))
 
-
     def get_recommendations(self, game):
         """
 
@@ -77,6 +85,7 @@ class Collabrative:
         :return:
         """
         print("in recommedations")
+        # return similar games to 'game'
 
         if os.path.isfile('../static/model.pkl') == False:
             self.transform()
@@ -96,5 +105,3 @@ class Collabrative:
         recommendation_df = top_games_df.iloc[indices[0][:10]].sort_values('model_score', ascending=False)
 
         return recommendation_df[['name', 'mean', 'model_score']]
-
-# Collabrative().get_recommendations('Gloomhaven')

@@ -14,6 +14,7 @@ config = {
 cnx = mysql.connector.connect(**config)
 mycursor = cnx.cursor()
 
+# Popular games based on the given category
 
 class PopularityRecommender:
     MODEL_NAME = 'Popularity'
@@ -32,8 +33,8 @@ class PopularityRecommender:
         :return:
         """
         if os.path.isfile('../data/' + popularity_type + '.csv') == False:
-            sql_query = "select name, rating from board_game where id in (select * from (select id from board_game_detail where " + popularity_type + " > 0 order by " + popularity_type + " Limit " + str(
-                topn) + " ) as t1) order by users_rated DESC;"
+            sql_query = "select name, rating from board_game where id in (select * from (select id from board_game_detail where " + popularity_type + " > 0 order by " + popularity_type + " Limit 100 ) as t1) order by users_rated DESC LIMIT "+ str(
+                topn) + " " + " ;"
             recommendation_df = pd.read_sql_query(sql_query, cnx)
             recommendation_df.index.name = 'id'
             recommendation_df.to_csv('../data/' + popularity_type + '.csv')

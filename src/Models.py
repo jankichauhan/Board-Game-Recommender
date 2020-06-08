@@ -6,6 +6,9 @@ from src.Collabrative import Collabrative
 import os.path
 from os import path
 
+
+# One access point to all models
+
 def get_popular(type):
     """
 
@@ -44,7 +47,5 @@ def get_collabrative(games):
 
         return result.head(10)
     else:
-        result = result.drop_duplicates().round({"mean":2, "model_score":2})
-        # print(result)
+        result = result.drop_duplicates().round({"mean": 2, "model_score": 2})
         return result.sort_values('model_score', ascending=False).head(10)
-

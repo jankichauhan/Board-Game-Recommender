@@ -17,6 +17,8 @@ config = {
 cnx = mysql.connector.connect(**config)
 mycursor = cnx.cursor()
 
+# Starting with simple ALS model, using RMSE to evaluate the model.
+# Initial test RMSE was 2.5, improved to 2.3 with gridsearch cv.
 
 class ALS:
     MODEL_NAME = 'ALS'
@@ -24,6 +26,7 @@ class ALS:
 
     def __init__(self):
         print("in init")
+
         self.spark = SparkSession.builder.config("spark.rpc.message.maxSize", 1024).getOrCreate()
         self.user_ratings = pd.read_csv('../data/bgg_user_ratings.csv', index_col=0)
         self.spark_df = self.spark.createDataFrame(self.user_ratings)
@@ -40,7 +43,7 @@ class ALS:
             rank=5)
 
 
-    def transform(self):
+    def recommend(self):
 
         self.recommender = self.factor_model.fit(self.spark_df)
 

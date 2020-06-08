@@ -16,6 +16,8 @@ cnx = mysql.connector.connect(**config)
 mycursor = cnx.cursor()
 
 
+# Parser to extract information from the board game xml files
+
 class Parser:
     def __init__(self):
         print("in init")
@@ -136,7 +138,6 @@ class Parser:
         """
 
         """
-        # Clear all table content before inserting
 
         designer = ''
         publisher = ''
@@ -163,19 +164,17 @@ class Parser:
                 self.rank = 0
 
             sql_insert = "INSERT INTO board_game (id,name,year,bgg_rank,rating,bayes_rating,max_player,min_player,playing_time,age,users_rated) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            # sql_insert = "INSERT INTO board_game VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             val = (self.id, self.name, self.yearpublished, self.rank, self.ratings, self.bayesratings, self.maxplayers,
                    self.minplayers, self.playingtime, self.age, self.usersrated)
             print(sql_insert, val)
             mycursor.execute(sql_insert, val)
             cnx.commit()
 
-            # "INSERT INTO `recommender`.`board_game_detail`(`id`,`bgg_rank`,`artist`,`publisher`,`desinger`,`meachanics`,`category`,`abstract`,`childersgames`,`partygames`,`strategygames`,`thematic`,`videogames`,`wargames`)
-
             sql_insert = "INSERT INTO board_game_detail VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             val = (
-            self.id, self.rank, artist, publisher, designer, mechanic, category, self.abstracts, self.childrensgames,
-            self.partygames, self.strategygames, self.thematic, self.videogames, self.wargames)
+                self.id, self.rank, artist, publisher, designer, mechanic, category, self.abstracts,
+                self.childrensgames,
+                self.partygames, self.strategygames, self.thematic, self.videogames, self.wargames)
             print(sql_insert, val)
             mycursor.execute(sql_insert, val)
             cnx.commit()
@@ -184,10 +183,13 @@ class Parser:
         else:
             print("Game is missing name")
 
+
 if __name__ == '__main__':
 
     files = os.listdir('../xmls/')
     counter = 0
+
+    # Clear all table content before inserting
     sql_delete = "delete from board_game where id > 0"
     mycursor.execute(sql_delete)
     sql_delete = "delete from board_game_detail where id > 0"
