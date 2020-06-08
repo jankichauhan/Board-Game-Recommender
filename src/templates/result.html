@@ -1,0 +1,32 @@
+{% extends "search.html" %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+   <style>
+        .center {
+          margin: 0 auto;
+          width: 60%;
+          padding: 1px;
+        }
+   </style>
+{% endblock %}
+{% block content %}
+
+<p style="text-align: center;"><span style="color: #333333;">Here are top 10 recommended games:</span></p>
+<table class="center">
+      <thead >
+      <th class="center"><p style="text-align: center;"><span style="color: #333333;">Game</span></th>
+<!--      <th class="center"><p style="text-align: left;"><span style="color: #333333;">Predicated Ratings</span></th>-->
+      </thead>
+      <tbody >
+        {% for x, y in data %}
+          <tr class="center">
+              <td><p style="text-align: center;"><span style="color: #333333;">{{ x }}</span></td>
+<!--              <td><p style="text-align: left;"><span style="color: #333333;">{{ y }}</span></td>-->
+          </tr>
+        {% endfor %}
+      </tbody>
+</table>
+{% endblock %}

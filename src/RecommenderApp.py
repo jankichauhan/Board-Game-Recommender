@@ -25,7 +25,7 @@ def popular():
     form = SearchForm(request.form)
     if request.method == 'POST':
         recommended_game = model.get_popular(str(request.form['category']))
-        return render_template('search.html', data=zip(recommended_game['name'].values.tolist(),
+        return render_template('result.html', data=zip(recommended_game['name'].values.tolist(),
                                                        recommended_game['rating'].values.tolist()), form=form)
 
     return render_template("search.html", form=form)
@@ -41,7 +41,7 @@ def collab():
         games = [first_game, second_game, third_game]
         recommended_game = model.get_collabrative(games)
         if not recommended_game.empty:
-            return render_template('search.html', data=zip(recommended_game['name'].values.tolist(),
+            return render_template('result.html', data=zip(recommended_game['name'].values.tolist(),
                                                        recommended_game['mean'].values.tolist()), form=form)
     return render_template("search.html", form=form)
 
