@@ -78,6 +78,7 @@ Each user rating has the following features: ~12M ratings(200K unique users and 
  ### Popularity recommender
  
  Popularity criteria = rank(overall/per category) + total number of voters
+ 
  Popularity recommender will recommend the games based popularity criteria
  User can choose to pick one of the following categories and the recommender will return popular games based of that category:
  > - Abstract Game
@@ -90,7 +91,7 @@ Each user rating has the following features: ~12M ratings(200K unique users and 
  
  ### Content based recommender
  
-Find the similarity between all pairs of games, then uses the most similar games to a user’s already-rated items to generate a list of recommendations.
+Find the similarity between all pairs of games, then use the most similar games to a user’s already-rated items to generate a list of recommendations.
 
 Similarity is defined using following features:
 >- Category
@@ -108,7 +109,7 @@ Similarity is defined using following features:
  
  ### Collaborative recommender
  
-A collaborative model computes similarity between games based users that rated those games and recommend games which have not played. 
+A collaborative model computes item to item similarity based on users that rated those games and given a game finds the nearest neighbor based on the similarity weight.
  
  ![](images/collab.png)
  
