@@ -25,7 +25,7 @@ def autocomplete():
 
 #result page
 @app.route('/result', methods=['GET', 'POST'])
-def popular():
+def result():
     """
 
     :return:
@@ -40,7 +40,7 @@ def popular():
 
 #home page
 @app.route('/', methods=['GET', 'POST'])
-def collab():
+def recommend():
     """
 
     :return:
