@@ -1,6 +1,8 @@
 # What board game should I play next?
 **Personalized board game recommender**
 
+<img src="images/IMG_20170429_132707.jpg" height="400">
+
 <br>Janki Chauhan
 <br>
 [Linkedin](https://www.linkedin.com/in/jankichauhan/) | [Github](https://github.com/jankichauhan) | [Board Game Geek](https://boardgamegeek.com/user/jankichauhan)
