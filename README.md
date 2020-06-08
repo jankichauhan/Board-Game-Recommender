@@ -132,8 +132,8 @@ A collaborative model computes similarity between games based users that rated t
  ![](images/knn.png)
 
  ## Result
- > - App link:
- 
+ > - Flask app demo:
+ ![](images/app_recording.gif)
  
  ## For Future
 >- Include an option of using bgg username and recommend games based on users past activity. 
