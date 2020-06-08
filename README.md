@@ -21,9 +21,8 @@
 * [For Future](#future)
 
 ## Motivation
-I got introduced to board games in Dec 2010, no one had plans for the holidays and we all had enough of movie watching. We played Ticket to Ride and then Settler of Catan a few days later; it was so much fun, I loved it. Since then it has been board games over movies(for me!) When you have been playing board games for 10 years, you start developing your favorites. I am biased towards Euro games(specially worker placement games), any game by Jamey Stegmaier or Uwe Rosenberg I am willing to give a try. On the other hand card games are not in my top 10. Dominion is one of the best gateway games but it didn't appeal to me. For finding the next game to play, I rely on amazing people at [Dice Tower](www.dicetower.com)(this a youtube channel for board games reviews, play throughs ... etc). 
-
-Can we train a machine to learn patterns among users and the games they like? We can use this trained machine to recommend the next game the user should play. 
+I got introduced to board games in Dec 2010, no one had plans for the holidays and we all had enough of movie watching. We played Ticket to Ride and then Settler of Catan a few days later; it was so much fun, I loved it. Since then it has been board games over movies(for me!) When you have been playing board games for 10 years, you start developing your favorites. I am biased towards Euro games(specially worker placement games), any game by Jamey Stegmaier or Uwe Rosenberg I am willing to give a try. On the other hand card games are not in my top 10. Dominion is one of the best gateway games but it didn't appeal to me. For finding the next game to play, I rely on amazing people at [Dice Tower](www.dicetower.com)(this a youtube channel for board games reviews, play throughs ... etc). Most of the time their recommendations are a hit but occasionally there are misses too. 
+My goal is to design a reliable recommender that learns from users and the games they have rated and generated a list of recommended similar games. 
 
 ## Data Exploration
 
@@ -79,6 +78,7 @@ Each user rating has the following features: ~12M ratings(200K unique users and 
  ### Popularity recommender
  
  Popularity criteria = rank(overall/per category) + total number of voters
+ 
  Popularity recommender will recommend the games based popularity criteria
  User can choose to pick one of the following categories and the recommender will return popular games based of that category:
  > - Abstract Game
@@ -91,7 +91,7 @@ Each user rating has the following features: ~12M ratings(200K unique users and 
  
  ### Content based recommender
  
-Find the similarity between all pairs of games, then uses the most similar games to a user’s already-rated items to generate a list of recommendations.
+Find the similarity between all pairs of games, then use the most similar games to a user’s already-rated items to generate a list of recommendations.
 
 Similarity is defined using following features:
 >- Category
@@ -109,7 +109,7 @@ Similarity is defined using following features:
  
  ### Collaborative recommender
  
-A collaborative model computes similarity between games based users that rated those games and recommend games which have not played. 
+A collaborative model computes item to item similarity based on users that rated those games and given a game finds the nearest neighbor based on the similarity weight.
  
  ![](images/collab.png)
  
