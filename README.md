@@ -60,9 +60,9 @@ Each user rating has the following features: ~12M ratings(200K unique users and 
   > -`review`
 
 
-#### Number of board games published in last 20 years
+#### Number of board games published by year, by categories. 
  
- ![](images/ratings.png)
+ ![](images/ByCategoryByYear.png)
  
  #### Ratings distribution over number of reviews
  
