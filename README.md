@@ -77,7 +77,7 @@ Each user rating has the following features: ~12M ratings(200K unique users and 
  
  ### Popularity recommender
  
- Popularity criteria = rank(overall/per category) + total number of voters
+ Popularity criteria = game weight based on rank and number of voters
  
  Popularity recommender will recommend the games based popularity criteria
  User can choose to pick one of the following categories and the recommender will return popular games based of that category:
