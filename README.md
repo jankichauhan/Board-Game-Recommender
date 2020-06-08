@@ -127,8 +127,9 @@ A collaborative model computes similarity between games based users that rated t
  >>>- RMSE - 1.23
  >>>- No of neighbours(knn) - no of games
  
+ Seeing the games in a top two dimensions of pca. 
+
  ![](images/knn.png)
-Seeing the games in a top two dimensions of pca. 
 
  ## Result
  > - App link:
