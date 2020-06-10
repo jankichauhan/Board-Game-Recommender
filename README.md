@@ -7,6 +7,8 @@
 <br>
 [Linkedin](https://www.linkedin.com/in/jankichauhan/) | [Github](https://github.com/jankichauhan) | [Board Game Geek](https://boardgamegeek.com/user/jankichauhan)
 
+[Presentation Video](https://www.youtube.com/watch?v=VeFI2N6h0Ng)
+
 ## Contents
 
 * [Motivation](#motivation)
