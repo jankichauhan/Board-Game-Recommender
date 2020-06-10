@@ -121,7 +121,7 @@ A collaborative model computes item to item similarity based on users that rated
  >>>- Test RMSE - 2.3
  
  >> - Fast AI + KNN: 
- >>>- Epoch - 3
+ >>>- Epoch - 5
  >>>- Learning rate - 1e-2
  >>>- Weight decay - 0.15
  >>>- Train Loss - 0.86
